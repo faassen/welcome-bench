@@ -11,7 +11,7 @@ the following::
   $ source env/bin/activate
   $ pip install -r requirements.txt
 
-You can then run the benchmarks:
+You can then run the benchmarks::
 
   $ python benchmark.py
 
