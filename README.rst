@@ -17,13 +17,6 @@ You can then run the benchmarks::
 
 This prints out benchmark information for all the included frameworks.
 
-You can also use the ``-f`` flag to restrict the frameworks to benchmark,
-for instance::
-
-  $ python benchmark -f morepath -f flask
-
-to benchmark just Flask and Morepath.
-
 If you want to ensure processor affinity you can try this::
 
   $ taskset python benchmark.py
@@ -90,6 +83,23 @@ code is, and to at least ensure it's not slower than some of the more
 common web frameworks.
 
 .. _Morepath: http://morepath.readthedocs.io
+
+Options
+-------
+
+You use the ``-f`` flag to restrict the frameworks to benchmark, for
+instance::
+
+  $ python benchmark -f morepath -f flask
+
+to benchmark just Flask and Morepath.
+
+You can use the ``-n`` flag to change the number of requests to use
+in the benchmark::
+
+  $ python benchmark -n 1000
+
+the default is 100000.
 
 History
 -------

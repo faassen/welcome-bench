@@ -68,7 +68,7 @@ def start_response(status, headers, exc_info=None):
     return None
 
 
-def run(frameworks, number=100000):
+def run(frameworks, number):
     print("Benchmarking frameworks:", ', '.join(frameworks))
     sys.path[0] = '.'
     path = os.getcwd()
@@ -97,13 +97,14 @@ def main():
     parser = argparse.ArgumentParser("Benchmark Python web frameworks.")
     parser.add_argument('-f', '--framework', action='append',
                         choices=known_frameworks)
+    parser.add_argument('-n', '--number', type=int, default=100000)
 
     args = parser.parse_args()
     frameworks = args.framework
     if not frameworks:
         frameworks = sorted(known_frameworks)
-    run(frameworks)
+    run(frameworks, args.number)
+
 
 if __name__ == '__main__':
     main()
-
