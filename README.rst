@@ -15,7 +15,7 @@ You can then run the benchmarks::
 
   $ python benchmark.py
 
-This prints out benchmark information.
+This prints out benchmark information for all the included frameworks.
 
 You can also use the ``-f`` flag to restrict the frameworks to benchmark,
 for instance::
