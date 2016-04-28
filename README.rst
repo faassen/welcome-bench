@@ -101,6 +101,9 @@ in the benchmark::
 
 the default is 100000.
 
+With the ``-p`` flag the tool also generates profile information on
+which functions it spent the most time in.
+
 History
 -------
 

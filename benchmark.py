@@ -68,7 +68,7 @@ def start_response(status, headers, exc_info=None):
     return None
 
 
-def run(frameworks, number):
+def run(frameworks, number, do_profile):
     print("Benchmarking frameworks:", ', '.join(frameworks))
     sys.path[0] = '.'
     path = os.getcwd()
@@ -84,7 +84,7 @@ def run(frameworks, number):
                 'f()', globals(), locals()))
             print("%-11s %6.0f %7.0f %7d %6d" % (framework, 1000 * time,
                   number / time, st.total_calls, len(st.stats)))
-            if 0:
+            if do_profile:
                 st = Stats(profile.Profile().runctx(
                     'timeit(f, number=number)', globals(), locals()))
                 st.strip_dirs().sort_stats('time').print_stats(10)
@@ -95,15 +95,22 @@ def run(frameworks, number):
 
 def main():
     parser = argparse.ArgumentParser("Benchmark Python web frameworks.")
-    parser.add_argument('-f', '--framework', action='append',
-                        choices=known_frameworks)
-    parser.add_argument('-n', '--number', type=int, default=100000)
+    parser.add_argument(
+        '-f', '--framework', action='append',
+        choices=known_frameworks,
+        help='Restrict frameworks to benchmark')
+    parser.add_argument(
+        '-n', '--number', type=int, default=100000,
+        help='Number of requests used for timing')
+    parser.add_argument(
+        '-p', '--profile', action='store_true',
+        help='Also generate profile information')
 
     args = parser.parse_args()
     frameworks = args.framework
     if not frameworks:
         frameworks = sorted(known_frameworks)
-    run(frameworks, args.number)
+    run(frameworks, args.number, args.profile)
 
 
 if __name__ == '__main__':
