@@ -1,5 +1,6 @@
 from __future__ import print_function
 
+import argparse
 import os
 import sys
 
@@ -19,7 +20,7 @@ except ImportError:
 from pstats import Stats
 from timeit import timeit
 
-frameworks = [
+known_frameworks = [
     'bottle',
     'django',
     'falcon',
@@ -30,8 +31,6 @@ frameworks = [
     'wheezy.web',
     'wsgi',
 ]
-
-frameworks = sorted(frameworks)
 
 environ = {
     'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;'
@@ -69,7 +68,7 @@ def start_response(status, headers, exc_info=None):
     return None
 
 
-def run(number=100000):
+def run(frameworks, number=100000):
     print("Benchmarking frameworks:", ', '.join(frameworks))
     sys.path[0] = '.'
     path = os.getcwd()
@@ -94,5 +93,17 @@ def run(number=100000):
             print("%-15s not installed" % framework)
 
 
+def main():
+    parser = argparse.ArgumentParser("Benchmark Python web frameworks.")
+    parser.add_argument('-f', '--framework', action='append',
+                        choices=known_frameworks)
+
+    args = parser.parse_args()
+    frameworks = args.framework
+    if not frameworks:
+        frameworks = sorted(known_frameworks)
+    run(frameworks)
+
 if __name__ == '__main__':
-    run()
+    main()
+

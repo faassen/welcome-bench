@@ -17,6 +17,13 @@ You can then run the benchmarks::
 
 This prints out benchmark information.
 
+You can also use the ``-f`` flag to restrict the frameworks to benchmark,
+for instance::
+
+  $ python benchmark -f morepath -f flask
+
+to benchmark just Flask and Morepath.
+
 If you want to ensure processor affinity you can try this::
 
   $ taskset python benchmark.py
