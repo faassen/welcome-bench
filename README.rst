@@ -90,14 +90,14 @@ Options
 You use the ``-f`` flag to restrict the frameworks to benchmark, for
 instance::
 
-  $ python benchmark -f morepath -f flask
+  $ python benchmark.py -f morepath -f flask
 
 to benchmark just Flask and Morepath.
 
 You can use the ``-n`` flag to change the number of requests to use
 in the benchmark::
 
-  $ python benchmark -n 1000
+  $ python benchmark.py -n 1000
 
 the default is 100000.
 
