@@ -1,4 +1,6 @@
 import morepath
+# could import Response directly and return it from root_default
+# to increase performance by a little
 
 
 class App(morepath.App):
