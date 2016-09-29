@@ -1,6 +1,14 @@
 Welcome Benchmark for Python Web Frameworks
 ===========================================
 
+**Note**
+
+This project has been superseded by:
+
+https://github.com/faassen/howareyou
+
+This benchmark is the default ``hello`` benchmark in that tool.
+
 Usage
 -----
 
